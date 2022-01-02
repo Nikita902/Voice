@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/jumpp"
+    android:paddingLeft="30px"
+    android:paddingRight="30px">
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_weight="0.5"
+            android:background="#000FFF"
+            android:backgroundTint="#000000"
+            android:text="Имя"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Фамилия"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/surname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Логин"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/login"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Пароль"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="150dp"
+            android:layout_weight="0.1"
+            android:paddingLeft="0dp"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <Button
+            android:id="@+id/Choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:backgroundTint="#4950D5"
+            android:onClick="ChoosePhoto"
+            android:text="Выбрать фото"
+
+            android:textAlignment="center" />
+
+    </TableRow>
+
+    <Button
+        android:id="@+id/Register"
+        android:layout_width="344dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_span="2"
+        android:backgroundTint="#4950D5"
+        android:onClick="Register"
+        android:text="Зарегистрироваться"
+        android:textAlignment="center" />
+
+</TableLayout>

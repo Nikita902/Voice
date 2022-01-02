@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/task"
+    android:paddingLeft="30px"
+    android:paddingRight="30px">
+
+    <TableRow android:backgroundTint="#90ACA8">
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_weight="0.5"
+            android:text="Название"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/tnameet"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="0.5"
+            android:text="Заметка"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/descret"
+            android:layout_width="200dp"
+
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Дата"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/dateet"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Время"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/timeet"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </TableRow>
+
+
+    <Button
+        android:id="@+id/btnColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выбрать цвет"
+        android:onClick="onClickButton"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnVoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:onClick="VoiceRecord"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textvoice"
+        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#4950D5"
+        android:onClick="SaveTask"
+        android:text="Записать" />
+</TableLayout>
