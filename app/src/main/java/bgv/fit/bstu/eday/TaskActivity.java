@@ -37,7 +37,7 @@ public class TaskActivity extends AppCompatActivity {
     Cursor userCursor;
     TaskAdapter taskAdapter;
 
-    ArrayList<Task> tasks =new ArrayList<Task>();
+    ArrayList<Task> tasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class TaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task);
         recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        ArrayList<Task> tasks= new ArrayList<>();
+        tasks = new ArrayList<>();
         databaseHelper = new DBHelper(getApplicationContext());
         db = databaseHelper.getWritableDatabase();
         userCursor = db.rawQuery("select * from Tasks", null);
@@ -60,9 +60,8 @@ public class TaskActivity extends AppCompatActivity {
             task.setUserId(userCursor.getInt(5));
             userCursor.moveToNext();
             tasks.add(task);
-            TaskAdapter taskAdapter = new TaskAdapter(tasks);
-            recyclerView.setAdapter(taskAdapter);
         }
+        Adapter();
     }
 
     @Override
@@ -78,13 +77,17 @@ public class TaskActivity extends AppCompatActivity {
             case (R.id.action_asc):
                 Toast.makeText(getApplicationContext(), "Был выбран пункт asc",
                         Toast.LENGTH_SHORT).show();
-//            Collections.sort(tasks, new Comparator<Task>() {
-//                @Override
-//                public int compare(Task task, Task t1) {
-//                    return task.compareTo(t1);
-//                }
-//            });
-            Adapter();
+                tasks.sort(Comparator.comparing(Task::getName));
+
+                Log.d("task_size: ", String.valueOf(tasks.size()));
+
+                for(int i = 0; i < tasks.size(); i++)
+                {
+                    Log.d("task: ", tasks.get(i).getName());
+                }
+
+
+                taskAdapter.notifyDataSetChanged();
             break;
         }
         return super.onOptionsItemSelected(item);
@@ -93,7 +96,7 @@ public class TaskActivity extends AppCompatActivity {
     public void Adapter(){
         recyclerView = (RecyclerView) findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        TaskAdapter taskAdapter = new TaskAdapter(tasks);
+        taskAdapter = new TaskAdapter(tasks);
         recyclerView.setAdapter(taskAdapter);
     }
 
