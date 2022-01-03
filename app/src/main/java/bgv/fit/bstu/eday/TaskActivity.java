@@ -43,24 +43,7 @@ public class TaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
-        recyclerView = (RecyclerView) findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        tasks = new ArrayList<>();
-        databaseHelper = new DBHelper(getApplicationContext());
-        db = databaseHelper.getWritableDatabase();
-        userCursor = db.rawQuery("select * from Tasks", null);
-        userCursor.moveToFirst();
-        while (!userCursor.isAfterLast()) {
-            Task task = new Task();
-            task.setId(userCursor.getInt(0));
-            task.setName(userCursor.getString(1));
-            task.setDescription(userCursor.getString(2));
-            task.setDate(userCursor.getString(3));
-            task.setTime(userCursor.getString(4));
-            task.setUserId(userCursor.getInt(5));
-            userCursor.moveToNext();
-            tasks.add(task);
-        }
+        GetTasks();
         Adapter();
     }
 
@@ -78,19 +61,20 @@ public class TaskActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Был выбран пункт asc",
                         Toast.LENGTH_SHORT).show();
                 tasks.sort(Comparator.comparing(Task::getName));
-
-                Log.d("task_size: ", String.valueOf(tasks.size()));
-
-                for(int i = 0; i < tasks.size(); i++)
-                {
-                    Log.d("task: ", tasks.get(i).getName());
-                }
-
-
                 taskAdapter.notifyDataSetChanged();
             break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onDeleteTaskButtonClick(View view) {
+        String id = view.getTag().toString();
+
+        databaseHelper = new DBHelper(getApplicationContext());
+        db = databaseHelper.getWritableDatabase();
+        db.delete("Tasks", "Id = ?", new String[]{id});
+        GetTasks();
+        Adapter();
     }
 
     public void Adapter(){
@@ -103,5 +87,24 @@ public class TaskActivity extends AppCompatActivity {
     public void CreateTaskPage(View view){
         Intent intent = new Intent(this,NewTaskActivity.class);
         startActivity(intent);
+    }
+
+    private void GetTasks() {
+        tasks = new ArrayList<>();
+        databaseHelper = new DBHelper(getApplicationContext());
+        db = databaseHelper.getWritableDatabase();
+        userCursor = db.rawQuery("select * from Tasks", null);
+        userCursor.moveToFirst();
+        while (!userCursor.isAfterLast()) {
+            Task task = new Task();
+            task.setId(userCursor.getInt(0));
+            task.setName(userCursor.getString(1));
+            task.setDescription(userCursor.getString(2));
+            task.setDate(userCursor.getString(3));
+            task.setTime(userCursor.getString(4));
+            task.setUserId(userCursor.getInt(5));
+            userCursor.moveToNext();
+            tasks.add(task);
+        }
     }
 }

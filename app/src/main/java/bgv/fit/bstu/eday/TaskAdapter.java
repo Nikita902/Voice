@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,11 +32,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public class TaskViewHolder extends RecyclerView.ViewHolder{
         TextView name, description, datentime;
+        Button deleteButton;
         public TaskViewHolder(View view) {
             super(view);
             name=view.findViewById(R.id.tnamet);
             description=view.findViewById(R.id.tdescr);
             datentime=view.findViewById(R.id.tdatentime);
+            deleteButton=view.findViewById(R.id.deleteButton);
         }
     }
 
@@ -51,6 +54,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.name.setText(tasks.get(position).getName());
         holder.description.setText(tasks.get(position).getDescription());
         holder.datentime.setText(tasks.get(position).getDate()+" "+tasks.get(position).getTime());
+        holder.deleteButton.setTag(tasks.get(position).getId());
         Log.d("name",number_audit);
     }
 
